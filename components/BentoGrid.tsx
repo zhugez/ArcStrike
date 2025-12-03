@@ -19,11 +19,13 @@ interface BentoItemProps {
     className?: string;
     colSpan?: 1 | 2 | 3;
     rowSpan?: 1 | 2;
+    onClick?: () => void;
 }
 
-export function BentoItem({ children, className, colSpan = 1, rowSpan = 1 }: BentoItemProps) {
+export function BentoItem({ children, className, colSpan = 1, rowSpan = 1, onClick }: BentoItemProps) {
     return (
         <GlassCard
+            onClick={onClick}
             className={cn(
                 className,
                 colSpan === 2 && "md:col-span-2",

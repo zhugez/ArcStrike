@@ -1,8 +1,15 @@
 import { Section } from "./Section";
 import { GlassCard } from "./GlassCard";
 import { AlertOctagon, GitBranch, Monitor, Shield } from "lucide-react";
+import { toast } from "sonner";
 
 export function Console() {
+    const handleFeatureClick = (feature: string) => {
+        toast.info("Module Updating", {
+            description: `${feature} is currently being updated to the latest version.`
+        });
+    };
+
     return (
         <Section className="py-24">
             <div className="text-center mb-16">
@@ -62,24 +69,28 @@ export function Console() {
                         title="Alerts & Incidents"
                         desc="Drill down from a high-level alert to the exact line of code or process argument that triggered it."
                         color="text-red-400"
+                        onClick={() => handleFeatureClick("Alerts & Incidents")}
                     />
                     <ConsoleFeature
                         icon={GitBranch}
                         title="Process Tree Forensics"
                         desc="Interactive visualization showing the ancestry of every process. Malicious nodes highlighted in Neon Red."
                         color="text-neon-purple"
+                        onClick={() => handleFeatureClick("Process Tree")}
                     />
                     <ConsoleFeature
                         icon={Monitor}
                         title="Endpoints Overview"
                         desc="See which agents are online, their version, and their current risk score."
                         color="text-neon-blue"
+                        onClick={() => handleFeatureClick("Endpoints Overview")}
                     />
                     <ConsoleFeature
                         icon={Shield}
                         title="Intelligence View"
                         desc="Visual map of your environment's exposure to specific MITRE ATT&CK techniques."
                         color="text-neon-green"
+                        onClick={() => handleFeatureClick("Intelligence View")}
                     />
                 </div>
             </div>
@@ -87,9 +98,12 @@ export function Console() {
     );
 }
 
-function ConsoleFeature({ icon: Icon, title, desc, color }: any) {
+function ConsoleFeature({ icon: Icon, title, desc, color, onClick }: any) {
     return (
-        <div className="flex gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors group cursor-default">
+        <div
+            onClick={onClick}
+            className="flex gap-4 p-4 rounded-lg hover:bg-white/5 transition-colors group cursor-pointer"
+        >
             <div className={`mt-1 p-2 rounded bg-white/5 group-hover:bg-white/10 transition-colors ${color}`}>
                 <Icon className="w-5 h-5" />
             </div>

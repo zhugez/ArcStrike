@@ -2,8 +2,15 @@ import { Section } from "./Section";
 import { GlassCard } from "./GlassCard";
 import { NeonButton } from "./NeonButton";
 import { Upload, FileCode, CheckCircle, AlertTriangle, Search } from "lucide-react";
+import { toast } from "sonner";
 
 export function FileScanner() {
+    const handleUploadClick = () => {
+        toast.info("Scanner Offline", {
+            description: "The public sandbox is currently at capacity. Please try again later or contact sales for a private instance."
+        });
+    };
+
     return (
         <Section className="py-20">
             <div className="flex flex-col lg:flex-row gap-16 items-center">
@@ -27,7 +34,10 @@ export function FileScanner() {
                     <GlassCard className="p-8 border-neon-green/30 relative overflow-hidden group">
                         <div className="absolute inset-0 bg-neon-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                        <div className="border-2 border-dashed border-white/20 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors hover:border-neon-green/50 hover:bg-white/5 cursor-pointer">
+                        <div
+                            onClick={handleUploadClick}
+                            className="border-2 border-dashed border-white/20 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors hover:border-neon-green/50 hover:bg-white/5 cursor-pointer"
+                        >
                             <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                                 <Upload className="w-8 h-8 text-neon-green" />
                             </div>
