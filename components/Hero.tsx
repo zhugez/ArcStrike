@@ -7,6 +7,7 @@ import { ArcStrikeLogo } from "./Logo";
 import { motion } from "framer-motion";
 import { ShieldCheck, UploadCloud, Zap, Globe, Lock } from "lucide-react";
 import { useMemo } from "react";
+import Link from "next/link";
 
 interface ThreatNodeProps {
     status: 'critical' | 'warning' | 'secure' | 'clean';
@@ -227,10 +228,12 @@ export function Hero() {
                         variants={itemVariants}
                         className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6"
                     >
-                        <NeonButton glowColor="green" size="lg" className="min-w-[220px] group">
-                            <UploadCloud className="mr-2 h-5 w-5 group-hover:-translate-y-0.5 transition-transform" />
-                            Upload File to Scan
-                        </NeonButton>
+                        <Link href="/login">
+                            <NeonButton glowColor="green" size="lg" className="min-w-[220px] group">
+                                <UploadCloud className="mr-2 h-5 w-5 group-hover:-translate-y-0.5 transition-transform" />
+                                Get Started
+                            </NeonButton>
+                        </Link>
                         <NeonButton variant="secondary" size="lg" className="min-w-[220px]">
                             <ShieldCheck className="mr-2 h-5 w-5" />
                             Deploy ArcStrike Agent

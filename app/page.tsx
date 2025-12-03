@@ -25,7 +25,6 @@ export default function Home() {
             <Ecosystem />
             <TrustSignals />
 
-            {/* Pricing Placeholder */}
             <Section className="py-24 text-center">
                 <h2 className="text-3xl font-bold text-white mb-4">Pricing & Licensing</h2>
                 <p className="text-gray-400 mb-2">Flexible options for teams of all sizes.</p>
