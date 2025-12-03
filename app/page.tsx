@@ -3,11 +3,13 @@
 import { Hero } from "@/components/Hero";
 import { ValueProps } from "@/components/ValueProps";
 import { Features } from "@/components/Features";
+import { UseCases } from "@/components/UseCases";
 import { TechSpecs } from "@/components/TechSpecs";
 import { FileScanner } from "@/components/FileScanner";
 import { EndpointAgent } from "@/components/EndpointAgent";
 import { Console } from "@/components/Console";
 import { Ecosystem } from "@/components/Ecosystem";
+import { TrustSignals } from "@/components/TrustSignals";
 import { Footer } from "@/components/Footer";
 import { Section } from "@/components/Section";
 
@@ -16,12 +18,14 @@ export default function Home() {
         <main className="min-h-screen bg-oled-black overflow-hidden selection:bg-neon-blue/30">
             <Hero />
             <ValueProps />
+            <UseCases />
             <Features />
             <TechSpecs />
             <FileScanner />
             <EndpointAgent />
             <Console />
             <Ecosystem />
+            <TrustSignals />
 
             {/* Pricing Placeholder */}
             <Section className="py-24 text-center">
