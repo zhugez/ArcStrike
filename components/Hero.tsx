@@ -57,12 +57,12 @@ const statusConfig = {
 
 function ThreatNode({ status, label, detail, position, delay = 0 }: ThreatNodeProps) {
     const config = statusConfig[status];
-    
+
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
-            transition={{ 
+            transition={{
                 opacity: { duration: 0.5, delay: delay * 0.3 },
                 scale: { duration: 0.5, delay: delay * 0.3 },
                 y: { duration: 3 + delay, repeat: Infinity, ease: "easeInOut", delay: delay * 0.3 }
@@ -167,10 +167,9 @@ export function Hero() {
 
     const itemVariants = {
         hidden: { opacity: 0, y: 20 },
-        visible: { 
-            opacity: 1, 
-            y: 0,
-            transition: { duration: 0.6, ease: "easeOut" }
+        visible: {
+            opacity: 1,
+            y: 0
         }
     };
 
@@ -181,7 +180,7 @@ export function Hero() {
                 <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-neon-purple/8 rounded-full blur-[120px]" />
                 <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-neon-green/5 rounded-full blur-[100px]" />
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] opacity-10" />
-                
+
                 {particles.map((p, i) => (
                     <FloatingParticle key={i} {...p} />
                 ))}
@@ -198,15 +197,15 @@ export function Hero() {
                     animate="visible"
                     className="mb-8"
                 >
-                    <motion.span 
+                    <motion.span
                         variants={itemVariants}
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neon-blue/10 border border-neon-blue/30 text-neon-blue text-sm font-hud tracking-widest mb-8"
                     >
                         <Zap className="w-4 h-4" />
                         PRECISION ENDPOINT DEFENSE
                     </motion.span>
-                    
-                    <motion.h1 
+
+                    <motion.h1
                         variants={itemVariants}
                         className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 text-white leading-[1.1]"
                     >
@@ -216,15 +215,15 @@ export function Hero() {
                             Neutralize the Unknown.
                         </span>
                     </motion.h1>
-                    
-                    <motion.p 
+
+                    <motion.p
                         variants={itemVariants}
                         className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
                     >
                         ArcStrike unifies next-gen malware analysis, behavioral EDR, and real-time forensics into a single, precision-engineered platform.
                     </motion.p>
 
-                    <motion.div 
+                    <motion.div
                         variants={itemVariants}
                         className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6"
                     >
@@ -237,15 +236,15 @@ export function Hero() {
                             Deploy ArcStrike Agent
                         </NeonButton>
                     </motion.div>
-                    
-                    <motion.p 
+
+                    <motion.p
                         variants={itemVariants}
                         className="text-sm text-gray-500 mb-8"
                     >
                         No agents required for file uploads. Agents available for full endpoint defense.
                     </motion.p>
 
-                    <motion.div 
+                    <motion.div
                         variants={itemVariants}
                         className="flex flex-wrap justify-center gap-6 pt-4 border-t border-white/5"
                     >
@@ -263,7 +262,7 @@ export function Hero() {
                 >
                     <GlassCard className="aspect-video relative overflow-hidden border-neon-blue/20 bg-black/60 hud-border radar-glow">
                         <div className="scanline-overlay opacity-20" />
-                        
+
                         <div className="absolute inset-0 flex items-center justify-center">
                             <div className="absolute inset-0">
                                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neon-blue/10 via-transparent to-transparent" />
@@ -295,7 +294,7 @@ export function Hero() {
                                     className="relative z-20"
                                     initial={{ scale: 0, opacity: 0 }}
                                     animate={{ scale: [1, 1.05, 1], opacity: 1 }}
-                                    transition={{ 
+                                    transition={{
                                         scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
                                         opacity: { duration: 0.5, delay: 1 }
                                     }}
