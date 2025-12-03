@@ -1,50 +1,111 @@
 import { Section } from "./Section";
+import { GlassCard } from "./GlassCard";
+import { motion } from "framer-motion";
+import { Activity, Database, Zap, ShieldCheck, ArrowRight } from "lucide-react";
 
 export function TechSpecs() {
     return (
         <Section className="py-24 bg-gradient-to-b from-transparent to-black/50">
-            <div className="max-w-4xl mx-auto">
-                <div className="mb-16">
-                    <h2 className="text-3xl font-bold mb-6 text-white">The Architecture of Defense</h2>
-                    <div className="h-1 w-20 bg-neon-blue rounded-full" />
+            <div className="max-w-6xl mx-auto">
+                <div className="mb-16 text-center">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                        Battle-Tested Performance
+                    </h2>
+                    <p className="text-gray-400 max-w-2xl mx-auto">
+                        Security isn't about promises. It's about precision, speed, and scale.
+                        Our model is trained on one of the industry's largest proprietary datasets.
+                    </p>
                 </div>
 
-                <div className="space-y-16">
-                    <TechBlock
-                        title="Static Analysis Engine"
-                        content="ArcStrike's static engine dissects file structures without execution. It parses PE/COFF headers, analyzes section entropy to detect packing, and extracts import/export tables to identify suspicious capabilities. This provides an immediate, safe baseline verdict."
+                {/* Metrics Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+                    <MetricCard
+                        icon={<ShieldCheck className="w-6 h-6 text-neon-blue" />}
+                        value="99.8%"
+                        label="TPR @ 1e-3 FPR"
+                        subtext="Validated on Windows Malware"
                     />
+                    <MetricCard
+                        icon={<Zap className="w-6 h-6 text-neon-purple" />}
+                        value="< 20ms"
+                        label="Inference Latency"
+                        subtext="Per file execution"
+                    />
+                    <MetricCard
+                        icon={<Database className="w-6 h-6 text-neon-green" />}
+                        value="3.2M+"
+                        label="Training Samples"
+                        subtext="Diverse malware families"
+                    />
+                    <MetricCard
+                        icon={<Activity className="w-6 h-6 text-white" />}
+                        value="0-Day"
+                        label="Behavioral Coverage"
+                        subtext="Heuristic detection"
+                    />
+                </div>
 
-                    <TechBlock
-                        title="Behavioral Analytics Pipeline"
-                        content="Our agent streams telemetry to the ArcStrike correlation engine. We don't just look at single events; we analyze sequences. A PowerShell script downloading a file is normal; a PowerShell script downloading a file, writing to System32, and modifying the registry is an incident."
-                    />
+                {/* Detection Pipeline Visualization */}
+                <div className="relative">
+                    <div className="absolute inset-0 bg-neon-blue/5 blur-3xl rounded-full" />
+                    <div className="relative z-10">
+                        <h3 className="text-2xl font-bold mb-12 text-center">Multi-Stage Detection Pipeline</h3>
 
-                    <TechBlock
-                        title="Machine Learning & Deep Learning"
-                        content="We utilize a proprietary Deep Learning model trained on millions of malware samples. Unlike traditional antivirus, it doesn't rely on exact signature matches. It learns features—byte sequences, opcode distributions, and structural anomalies—to identify variants of known families and entirely new threats with low false positives."
-                    />
-
-                    <TechBlock
-                        title="Memory Scanning Engine"
-                        content="Advanced threats hide in memory. ArcStrike’s memory engine pauses threads for microseconds to inspect heaps and stacks for 'floating' code—shellcode or beacons that never touch the disk. This catches sophisticated C2 implants that evade file-based scanners."
-                    />
-
-                    <TechBlock
-                        title="Secure Telemetry"
-                        content="All data is transmitted via mTLS (Mutual TLS) tunnels. We prioritize privacy: customer data is encrypted at rest and in transit. The protocol is designed to be resilient, buffering data locally if the endpoint goes offline."
-                    />
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <PipelineStage
+                                step="01"
+                                title="Static Analysis"
+                                desc="PE Header parsing, entropy analysis, and import hashing."
+                                color="border-neon-blue"
+                            />
+                            <PipelineStage
+                                step="02"
+                                title="Deep Learning"
+                                desc="Vectorized feature extraction via proprietary neural networks."
+                                color="border-neon-purple"
+                            />
+                            <PipelineStage
+                                step="03"
+                                title="Behavioral Hooks"
+                                desc="Kernel-level monitoring of API calls and system events."
+                                color="border-neon-green"
+                            />
+                            <PipelineStage
+                                step="04"
+                                title="Memory Scan"
+                                desc="Heap inspection for reflective DLLs and hollowed processes."
+                                color="border-white"
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
         </Section>
     );
 }
 
-function TechBlock({ title, content }: { title: string; content: string }) {
+function MetricCard({ icon, value, label, subtext }: { icon: React.ReactNode, value: string, label: string, subtext: string }) {
     return (
-        <div className="flex flex-col md:flex-row gap-6 md:gap-12 border-l-2 border-white/10 pl-8 hover:border-neon-blue transition-colors duration-300">
-            <h3 className="text-xl font-bold text-white min-w-[250px]">{title}</h3>
-            <p className="text-gray-400 leading-relaxed text-lg">{content}</p>
+        <GlassCard className="p-6 text-center hover:bg-white/5 transition-colors">
+            <div className="inline-flex p-3 rounded-full bg-white/5 mb-4">
+                {icon}
+            </div>
+            <div className="text-3xl font-bold text-white mb-1">{value}</div>
+            <div className="text-sm font-bold text-gray-300 mb-2">{label}</div>
+            <div className="text-xs text-gray-500 font-mono">{subtext}</div>
+        </GlassCard>
+    );
+}
+
+function PipelineStage({ step, title, desc, color }: { step: string, title: string, desc: string, color: string }) {
+    return (
+        <div className={`relative p-6 rounded-xl border-l-2 ${color} bg-white/5 backdrop-blur-sm`}>
+            <div className="text-xs font-mono text-gray-500 mb-2">STAGE {step}</div>
+            <h4 className="text-lg font-bold text-white mb-2">{title}</h4>
+            <p className="text-sm text-gray-400">{desc}</p>
+
+            {/* Connector Line (Desktop only) */}
+            <div className="hidden md:block absolute top-1/2 -right-4 w-4 h-0.5 bg-white/10 last:hidden" />
         </div>
     );
 }

@@ -31,13 +31,25 @@ export function Console() {
                             <div className="text-neon-blue text-xs font-mono mb-1">ACTIVE AGENTS</div>
                             <div className="text-2xl font-bold text-white">1,248</div>
                         </div>
-                        <div className="col-span-2 p-4 rounded bg-white/5 border border-white/10 h-48 relative">
-                            <div className="text-gray-400 text-xs font-mono mb-2">THREAT TIMELINE</div>
-                            {/* Mock Chart Lines */}
-                            <div className="absolute bottom-4 left-4 right-4 h-32 flex items-end gap-1">
-                                {[40, 60, 30, 80, 50, 90, 20, 40, 60, 70, 40, 50, 30, 20, 10].map((h, i) => (
-                                    <div key={i} className="flex-1 bg-neon-blue/50 hover:bg-neon-blue transition-colors" style={{ height: `${h}%` }} />
-                                ))}
+                        <div className="col-span-2 p-4 rounded bg-white/5 border border-white/10 h-48 relative overflow-hidden">
+                            <div className="text-gray-400 text-xs font-mono mb-2">LATEST DETECTIONS</div>
+                            <div className="space-y-3">
+                                <div className="flex items-center justify-between text-xs border-b border-white/5 pb-2">
+                                    <span className="text-red-400 font-mono">CobaltStrike_Beacon.dll</span>
+                                    <span className="text-gray-500">MemScan</span>
+                                </div>
+                                <div className="flex items-center justify-between text-xs border-b border-white/5 pb-2">
+                                    <span className="text-red-400 font-mono">mimikatz.exe</span>
+                                    <span className="text-gray-500">CredDump</span>
+                                </div>
+                                <div className="flex items-center justify-between text-xs border-b border-white/5 pb-2">
+                                    <span className="text-orange-400 font-mono">powershell_obfuscated.ps1</span>
+                                    <span className="text-gray-500">Heuristic</span>
+                                </div>
+                                <div className="flex items-center justify-between text-xs">
+                                    <span className="text-yellow-400 font-mono">unknown_packer.exe</span>
+                                    <span className="text-gray-500">ML_Engine</span>
+                                </div>
                             </div>
                         </div>
                     </div>
