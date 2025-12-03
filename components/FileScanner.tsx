@@ -1,185 +1,77 @@
-"use client";
+import { Section } from "./Section";
+import { GlassCard } from "./GlassCard";
+import { NeonButton } from "./NeonButton";
+import { Upload, FileCode, CheckCircle, AlertTriangle, Search } from "lucide-react";
 
-import React from 'react';
-
-export default function FileScanner() {
+export function FileScanner() {
     return (
-        <section className="py-24 px-6 bg-dark-grey">
-            <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 glow-plasma">
-                        Browser-Based File Scanner
+        <Section className="py-20">
+            <div className="flex flex-col lg:flex-row gap-16 items-center">
+                <div className="lg:w-1/2">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                        Instant Forensic Analysis
                     </h2>
-                    <p className="text-xl text-secondary max-w-3xl mx-auto">
-                        Upload files directly from your browser for instant malware analysis — no agent installation required
-                    </p>
-                </div>
-
-                {/* Main description */}
-                <div className="glass-strong rounded-2xl p-10 mb-12 max-w-4xl mx-auto">
-                    <p className="text-lg text-secondary leading-relaxed mb-8">
-                        ArcStrike's web-based file scanner provides instant threat analysis for any file type.
-                        Upload executables, documents, archives, or scripts, and receive a comprehensive security
-                        assessment powered by the same static analysis and machine learning engines that protect
-                        enterprise endpoints.
+                    <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+                        Don't wait for an incident. Proactively analyze suspicious files with our web-based scanner. No agent installation required—just drag, drop, and dissect.
                     </p>
 
-                    {/* User flow */}
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        <div className="text-center">
-                            <div className="w-16 h-16 mx-auto mb-4 bg-electric-blue/10 rounded-full flex items-center justify-center text-2xl border border-electric-blue/30">
-                                1
-                            </div>
-                            <h4 className="font-semibold text-white mb-2">Upload File</h4>
-                            <p className="text-sm text-tertiary">
-                                Drag and drop or select from your device
-                            </p>
-                        </div>
-
-                        <div className="text-center">
-                            <div className="w-16 h-16 mx-auto mb-4 bg-electric-blue/10 rounded-full flex items-center justify-center text-2xl border border-electric-blue/30">
-                                2
-                            </div>
-                            <h4 className="font-semibold text-white mb-2">Analysis</h4>
-                            <p className="text-sm text-tertiary">
-                                Static analysis and ML/DL classification
-                            </p>
-                        </div>
-
-                        <div className="text-center">
-                            <div className="w-16 h-16 mx-auto mb-4 bg-electric-blue/10 rounded-full flex items-center justify-center text-2xl border border-electric-blue/30">
-                                3
-                            </div>
-                            <h4 className="font-semibold text-white mb-2">Simulation</h4>
-                            <p className="text-sm text-tertiary">
-                                Behavioral inference and IOC extraction
-                            </p>
-                        </div>
-
-                        <div className="text-center">
-                            <div className="w-16 h-16 mx-auto mb-4 bg-electric-blue/10 rounded-full flex items-center justify-center text-2xl border border-electric-blue/30">
-                                4
-                            </div>
-                            <h4 className="font-semibold text-white mb-2">Report</h4>
-                            <p className="text-sm text-tertiary">
-                                Detailed results with shareable URL
-                            </p>
-                        </div>
+                    <div className="space-y-6">
+                        <Step number="01" title="Upload" desc="Securely transmit any file (up to 500MB) directly from your browser." />
+                        <Step number="02" title="Analyze" desc="Parallel processing: static decomposition, ML classification, and YARA scanning." />
+                        <Step number="03" title="Enrich" desc="Hashes checked against global reputation databases and ShadowTrace intelligence." />
+                        <Step number="04" title="Report" desc="Receive a comprehensive, interactive forensic report in seconds." />
                     </div>
                 </div>
 
-                {/* Scan Result Layout Description */}
-                <div>
-                    <h3 className="text-3xl font-bold text-white mb-8 text-center">
-                        Comprehensive Scan Results
-                    </h3>
-                    <p className="text-center text-secondary mb-12 max-w-3xl mx-auto">
-                        Every scan produces a detailed report organized in bento-style panels for easy navigation and analysis
-                    </p>
+                <div className="lg:w-1/2 w-full">
+                    <GlassCard className="p-8 border-neon-green/30 relative overflow-hidden group">
+                        <div className="absolute inset-0 bg-neon-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {/* Identity Panel */}
-                        <div className="bento-card bg-gradient-to-br from-electric-blue/5 to-transparent">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-10 h-10 bg-electric-blue/20 rounded-lg flex items-center justify-center text-lg">
-                                    🆔
-                                </div>
-                                <h4 className="text-lg font-bold text-white">File Identity</h4>
+                        <div className="border-2 border-dashed border-white/20 rounded-xl p-12 flex flex-col items-center justify-center text-center transition-colors hover:border-neon-green/50 hover:bg-white/5 cursor-pointer">
+                            <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <Upload className="w-8 h-8 text-neon-green" />
                             </div>
-                            <ul className="space-y-2 text-sm text-tertiary">
-                                <li>• Filename and file type</li>
-                                <li>• MD5, SHA1, SHA256 hashes</li>
-                                <li>• File size and creation timestamp</li>
-                            </ul>
+                            <h3 className="text-xl font-bold text-white mb-2">Drag & Drop File</h3>
+                            <p className="text-gray-500 text-sm mb-6">or click to browse (EXE, DLL, PDF, DOCX)</p>
+                            <NeonButton glowColor="green" className="w-full max-w-xs">
+                                Select File
+                            </NeonButton>
                         </div>
 
-                        {/* Static Analysis Panel */}
-                        <div className="bento-card bg-gradient-to-br from-plasma-purple/5 to-transparent">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-10 h-10 bg-plasma-purple/20 rounded-lg flex items-center justify-center text-lg">
-                                    🔬
+                        {/* Mock Result Preview */}
+                        <div className="mt-6 space-y-3 opacity-50 blur-[1px] group-hover:opacity-100 group-hover:blur-0 transition-all duration-500">
+                            <div className="flex items-center justify-between p-3 rounded bg-white/5 border border-white/10">
+                                <div className="flex items-center gap-3">
+                                    <FileCode className="w-5 h-5 text-gray-400" />
+                                    <span className="text-sm text-gray-300">invoice_dec_2024.pdf.exe</span>
                                 </div>
-                                <h4 className="text-lg font-bold text-white">Static Properties</h4>
+                                <span className="text-xs font-mono text-red-400 flex items-center gap-1">
+                                    <AlertTriangle className="w-3 h-3" /> MALICIOUS (98%)
+                                </span>
                             </div>
-                            <ul className="space-y-2 text-sm text-tertiary">
-                                <li>• PE/ELF sections and headers</li>
-                                <li>• Import/export table inspection</li>
-                                <li>• Entropy analysis and packing detection</li>
-                            </ul>
-                        </div>
-
-                        {/* Detection Verdict Panel */}
-                        <div className="bento-card bg-gradient-to-br from-neon-green/5 to-transparent">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-10 h-10 bg-neon-green/20 rounded-lg flex items-center justify-center text-lg">
-                                    ✅
+                            <div className="flex items-center justify-between p-3 rounded bg-white/5 border border-white/10">
+                                <div className="flex items-center gap-3">
+                                    <Search className="w-5 h-5 text-gray-400" />
+                                    <span className="text-sm text-gray-300">Static Analysis</span>
                                 </div>
-                                <h4 className="text-lg font-bold text-white">ML Verdict</h4>
+                                <span className="text-xs font-mono text-yellow-400">High Entropy</span>
                             </div>
-                            <ul className="space-y-2 text-sm text-tertiary">
-                                <li>• Malicious / Suspicious / Clean</li>
-                                <li>• Confidence score (0-100%)</li>
-                                <li>• Feature importance breakdown</li>
-                            </ul>
                         </div>
-
-                        {/* Behavioral Insights Panel */}
-                        <div className="bento-card bg-gradient-to-br from-electric-blue/5 to-transparent">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-10 h-10 bg-electric-blue/20 rounded-lg flex items-center justify-center text-lg">
-                                    ⚙️
-                                </div>
-                                <h4 className="text-lg font-bold text-white">Behavioral Insights</h4>
-                            </div>
-                            <ul className="space-y-2 text-sm text-tertiary">
-                                <li>• Expected process behavior</li>
-                                <li>• Network indicators (IPs, domains)</li>
-                                <li>• Registry and file system impacts</li>
-                            </ul>
-                        </div>
-
-                        {/* YARA & Rules Panel */}
-                        <div className="bento-card bg-gradient-to-br from-plasma-purple/5 to-transparent">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-10 h-10 bg-plasma-purple/20 rounded-lg flex items-center justify-center text-lg">
-                                    📜
-                                </div>
-                                <h4 className="text-lg font-bold text-white">YARA Matches</h4>
-                            </div>
-                            <ul className="space-y-2 text-sm text-tertiary">
-                                <li>• Matched rule names and families</li>
-                                <li>• Rule metadata and descriptions</li>
-                                <li>• String hits and offsets</li>
-                            </ul>
-                        </div>
-
-                        {/* ATT&CK & IOCs Panel */}
-                        <div className="bento-card bg-gradient-to-br from-neon-green/5 to-transparent">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-10 h-10 bg-neon-green/20 rounded-lg flex items-center justify-center text-lg">
-                                    🎯
-                                </div>
-                                <h4 className="text-lg font-bold text-white">ATT&CK & IOCs</h4>
-                            </div>
-                            <ul className="space-y-2 text-sm text-tertiary">
-                                <li>• MITRE ATT&CK techniques mapped</li>
-                                <li>• Extracted IOCs (IPs, domains, hashes)</li>
-                                <li>• Threat intelligence context from ShadowTrace</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                {/* CTA */}
-                <div className="mt-16 text-center">
-                    <button className="px-10 py-5 bg-gradient-electric text-white font-bold rounded-xl transition-smooth hover:scale-105 shadow-lg">
-                        Try File Scanner Now
-                    </button>
-                    <p className="mt-4 text-sm text-tertiary">
-                        Free for up to 10 files per day. No registration required.
-                    </p>
+                    </GlassCard>
                 </div>
             </div>
-        </section>
+        </Section>
+    );
+}
+
+function Step({ number, title, desc }: { number: string, title: string, desc: string }) {
+    return (
+        <div className="flex gap-4">
+            <span className="text-neon-green font-mono text-xl font-bold opacity-50">{number}</span>
+            <div>
+                <h4 className="text-white font-bold mb-1">{title}</h4>
+                <p className="text-sm text-gray-500">{desc}</p>
+            </div>
+        </div>
     );
 }

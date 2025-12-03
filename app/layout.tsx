@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "ArcStrike — Advanced Endpoint Threat Detection & Malware Defense",
-  description: "Enterprise-grade EDR and malware detection engine with ML-powered analysis, real-time behavioral monitoring, and comprehensive threat intelligence integration.",
+  title: "ArcStrike — Advanced Endpoint Threat Detection",
+  description: "Next-gen malware analysis and behavioral EDR for modern defense teams.",
 };
 
 export default function RootLayout({
@@ -23,10 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={`${inter.variable} antialiased dark`} suppressHydrationWarning>
+      <body className="bg-oled-black text-foreground min-h-screen selection:bg-neon-blue/30 selection:text-neon-blue" suppressHydrationWarning>
         {children}
       </body>
     </html>

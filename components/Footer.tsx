@@ -1,123 +1,49 @@
-"use client";
+import { Section } from "./Section";
+import { ArcStrikeLogo } from "./Logo";
 
-import React from 'react';
-
-export default function Footer() {
+export function Footer() {
     return (
-        <footer className="py-16 px-6 bg-deep-black border-t border-white/10">
-            <div className="max-w-7xl mx-auto">
+        <footer className="border-t border-white/10 bg-black py-12">
+            <Section>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                    {/* Brand */}
-                    <div className="md:col-span-1">
-                        <h3 className="text-2xl font-bold text-white mb-4 glow-electric">
-                            ArcStrike
-                        </h3>
-                        <p className="text-tertiary text-sm leading-relaxed">
-                            Advanced endpoint threat detection and malware defense for enterprise security teams.
-                            Powered by machine learning, behavioral analytics, and threat intelligence.
+                    <div className="col-span-1 md:col-span-2">
+                        <div className="mb-4">
+                            <ArcStrikeLogo />
+                        </div>
+                        <p className="text-gray-400 max-w-sm">
+                            Precision Endpoint Defense. Unifying next-gen malware analysis, behavioral EDR, and real-time forensics.
                         </p>
                     </div>
 
-                    {/* Product Links */}
                     <div>
-                        <h4 className="font-semibold text-white mb-4">Product</h4>
-                        <ul className="space-y-3">
-                            <li>
-                                <a href="#" className="text-tertiary hover:text-electric-blue transition-smooth text-sm">
-                                    Documentation
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-tertiary hover:text-electric-blue transition-smooth text-sm">
-                                    API Reference
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-tertiary hover:text-electric-blue transition-smooth text-sm">
-                                    Agent Downloads
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-tertiary hover:text-electric-blue transition-smooth text-sm">
-                                    Release Notes
-                                </a>
-                            </li>
+                        <h3 className="text-white font-bold mb-4">Product</h3>
+                        <ul className="space-y-2 text-gray-400">
+                            <li><a href="#" className="hover:text-neon-blue transition-colors">Documentation</a></li>
+                            <li><a href="#" className="hover:text-neon-blue transition-colors">API Reference</a></li>
+                            <li><a href="#" className="hover:text-neon-blue transition-colors">Security & Compliance</a></li>
                         </ul>
                     </div>
 
-                    {/* Ecosystem Links */}
                     <div>
-                        <h4 className="font-semibold text-white mb-4">Ecosystem</h4>
-                        <ul className="space-y-3">
-                            <li>
-                                <a href="#" className="text-tertiary hover:text-plasma-purple transition-smooth text-sm">
-                                    ShadowTrace Platform
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-tertiary hover:text-plasma-purple transition-smooth text-sm">
-                                    ShadeHunter IDS/IPS
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-tertiary hover:text-plasma-purple transition-smooth text-sm">
-                                    Integration Guides
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-tertiary hover:text-plasma-purple transition-smooth text-sm">
-                                    Partner Program
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Company Links */}
-                    <div>
-                        <h4 className="font-semibold text-white mb-4">Company</h4>
-                        <ul className="space-y-3">
-                            <li>
-                                <a href="#" className="text-tertiary hover:text-neon-green transition-smooth text-sm">
-                                    Security & Compliance
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-tertiary hover:text-neon-green transition-smooth text-sm">
-                                    Trust Center
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-tertiary hover:text-neon-green transition-smooth text-sm">
-                                    Contact Support
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="text-tertiary hover:text-neon-green transition-smooth text-sm">
-                                    Privacy Policy
-                                </a>
-                            </li>
+                        <h3 className="text-white font-bold mb-4">Ecosystem</h3>
+                        <ul className="space-y-2 text-gray-400">
+                            <li><a href="#" className="hover:text-neon-purple transition-colors">ShadowTrace</a></li>
+                            <li><a href="https://shadehunter.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-neon-blue transition-colors">ShadeHunter</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">Contact Support</a></li>
                         </ul>
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-tertiary text-sm">
-                        © 2025 ArcStrike. All rights reserved.
+                <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-gray-500 text-sm">
+                        © 2025 ArcStrike Defense Systems. All rights reserved.
                     </p>
-                    <div className="flex gap-6">
-                        <a href="#" className="text-tertiary hover:text-electric-blue transition-smooth text-sm">
-                            Terms of Service
-                        </a>
-                        <a href="#" className="text-tertiary hover:text-electric-blue transition-smooth text-sm">
-                            Privacy
-                        </a>
-                        <a href="#" className="text-tertiary hover:text-electric-blue transition-smooth text-sm">
-                            Cookies
-                        </a>
+                    <div className="flex gap-6 text-sm text-gray-500">
+                        <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
                     </div>
                 </div>
-            </div>
+            </Section>
         </footer>
     );
 }
