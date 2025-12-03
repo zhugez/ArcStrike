@@ -1,47 +1,62 @@
+'use client';
+
 import { cn } from "@/lib/utils";
-import { ButtonHTMLAttributes, forwardRef } from "react";
+import { forwardRef } from "react";
 import { motion, HTMLMotionProps } from "framer-motion";
 
 interface NeonButtonProps extends HTMLMotionProps<"button"> {
     variant?: "primary" | "secondary" | "outline";
-    glowColor?: "blue" | "purple" | "green";
+    glowColor?: "blue" | "purple" | "green" | "cyan";
+    size?: "sm" | "md" | "lg";
 }
 
 export const NeonButton = forwardRef<HTMLButtonElement, NeonButtonProps>(
-    ({ className, variant = "primary", glowColor = "blue", children, ...props }, ref) => {
-        const glowMap = {
-            blue: "shadow-neon-blue/50 hover:shadow-neon-blue/80 border-neon-blue text-neon-blue",
-            purple: "shadow-neon-purple/50 hover:shadow-neon-purple/80 border-neon-purple text-neon-purple",
-            green: "shadow-neon-green/50 hover:shadow-neon-green/80 border-neon-green text-neon-green",
+    ({ className, variant = "primary", glowColor = "blue", size = "md", children, ...props }, ref) => {
+        const sizeStyles = {
+            sm: "px-4 py-2 text-sm",
+            md: "px-6 py-3 text-base",
+            lg: "px-8 py-4 text-lg",
         };
 
-        const bgMap = {
-            blue: "bg-neon-blue text-black hover:bg-neon-blue/90",
-            purple: "bg-neon-purple text-white hover:bg-neon-purple/90",
-            green: "bg-neon-green text-black hover:bg-neon-green/90",
-        }
+        const primaryStyles = {
+            blue: "bg-neon-blue text-black hover:bg-neon-blue/90 shadow-[0_0_20px_rgba(0,128,255,0.4)] hover:shadow-[0_0_30px_rgba(0,128,255,0.6)]",
+            purple: "bg-neon-purple text-white hover:bg-neon-purple/90 shadow-[0_0_20px_rgba(191,0,255,0.4)] hover:shadow-[0_0_30px_rgba(191,0,255,0.6)]",
+            green: "bg-neon-green text-black hover:bg-neon-green/90 shadow-[0_0_20px_rgba(57,255,20,0.4)] hover:shadow-[0_0_30px_rgba(57,255,20,0.6)]",
+            cyan: "bg-neon-cyan text-black hover:bg-neon-cyan/90 shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:shadow-[0_0_30px_rgba(0,255,255,0.6)]",
+        };
 
-        const baseStyles = "relative inline-flex items-center justify-center px-6 py-3 font-semibold transition-all duration-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed";
+        const outlineStyles = {
+            blue: "border-neon-blue text-neon-blue hover:bg-neon-blue/10 hover:shadow-[0_0_20px_rgba(0,128,255,0.3)]",
+            purple: "border-neon-purple text-neon-purple hover:bg-neon-purple/10 hover:shadow-[0_0_20px_rgba(191,0,255,0.3)]",
+            green: "border-neon-green text-neon-green hover:bg-neon-green/10 hover:shadow-[0_0_20px_rgba(57,255,20,0.3)]",
+            cyan: "border-neon-cyan text-neon-cyan hover:bg-neon-cyan/10 hover:shadow-[0_0_20px_rgba(0,255,255,0.3)]",
+        };
+
+        const baseStyles = cn(
+            "relative inline-flex items-center justify-center font-semibold rounded-lg",
+            "transition-all duration-300 ease-out",
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
+            "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
+            "cursor-pointer select-none",
+            sizeStyles[size]
+        );
 
         let variantStyles = "";
 
         if (variant === "primary") {
-            variantStyles = cn(
-                bgMap[glowColor],
-                "shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(0,0,0,0.7)] hover:scale-105"
-            );
-            // Add specific glow color shadow manually if needed, or rely on the map if we want colored shadows for primary
-            if (glowColor === 'blue') variantStyles = cn(variantStyles, "shadow-neon-blue/20 hover:shadow-neon-blue/40");
-            if (glowColor === 'green') variantStyles = cn(variantStyles, "shadow-neon-green/20 hover:shadow-neon-green/40");
-            if (glowColor === 'purple') variantStyles = cn(variantStyles, "shadow-neon-purple/20 hover:shadow-neon-purple/40");
-
+            variantStyles = cn(primaryStyles[glowColor], "hover:scale-[1.02] active:scale-[0.98]");
         } else if (variant === "secondary") {
-            variantStyles = "bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border border-white/10 hover:border-white/30";
+            variantStyles = cn(
+                "bg-white/5 text-white backdrop-blur-md",
+                "border border-white/20 hover:border-white/40",
+                "hover:bg-white/10",
+                "hover:scale-[1.02] active:scale-[0.98]"
+            );
         } else if (variant === "outline") {
             variantStyles = cn(
-                "bg-transparent border-2 hover:bg-white/5",
-                glowMap[glowColor].split(" ").filter(c => c.startsWith("border") || c.startsWith("text")).join(" "),
-                "shadow-[0_0_10px_transparent] hover:shadow-[0_0_15px_currentColor]"
+                "bg-transparent border-2",
+                outlineStyles[glowColor],
+                "hover:scale-[1.02] active:scale-[0.98]"
             );
         }
 
@@ -49,7 +64,7 @@ export const NeonButton = forwardRef<HTMLButtonElement, NeonButtonProps>(
             <motion.button
                 ref={ref}
                 className={cn(baseStyles, variantStyles, className)}
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.98 }}
                 {...props}
             >
                 {children}

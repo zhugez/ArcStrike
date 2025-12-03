@@ -6,7 +6,6 @@ import { Features } from "@/components/Features";
 import { UseCases } from "@/components/UseCases";
 import { TechSpecs } from "@/components/TechSpecs";
 import { FileScanner } from "@/components/FileScanner";
-import { EndpointAgent } from "@/components/EndpointAgent";
 import { Console } from "@/components/Console";
 import { Ecosystem } from "@/components/Ecosystem";
 import { TrustSignals } from "@/components/TrustSignals";
@@ -22,7 +21,6 @@ export default function Home() {
             <Features />
             <TechSpecs />
             <FileScanner />
-            <EndpointAgent />
             <Console />
             <Ecosystem />
             <TrustSignals />
