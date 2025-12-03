@@ -33,7 +33,7 @@ export function TechSpecs() {
                     />
                     <MetricCard
                         icon={<Database className="w-6 h-6 text-neon-green" />}
-                        value="3.2M+"
+                        value="200K+"
                         label="Training Samples"
                         subtext="Diverse malware families"
                     />
