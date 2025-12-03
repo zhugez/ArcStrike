@@ -9,29 +9,19 @@ export function ArcStrikeLogo({ className = "w-8 h-8", showText = true }: { clas
                 xmlns="http://www.w3.org/2000/svg"
                 className={className}
             >
-                <defs>
-                    <linearGradient id="bolt-gradient" x1="16" y1="2" x2="16" y2="30" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stopColor="#FFFFFF" />
-                        <stop offset="50%" stopColor="#68b3ffff" />
-                        <stop offset="100%" stopColor="#BF00FF" />
-                    </linearGradient>
-                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                        <feGaussianBlur stdDeviation="2" result="blur" />
-                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                    </filter>
-                </defs>
-
-                {/* Background Light/Flash */}
-                <circle cx="16" cy="16" r="10" className="fill-neon-blue/20 blur-md" />
-
-                {/* The Bolt */}
+                {/* Geometric Hexagon Container */}
                 <path
-                    d="M17 2L6 18H15L13 30L26 12H17L19 2H17Z"
-                    fill="url(#bolt-gradient)"
-                    stroke="white"
-                    strokeWidth="0.5"
+                    d="M16 2L28.1244 9V23L16 30L3.87564 23V9L16 2Z"
+                    stroke="#0161fcff"
+                    strokeWidth="2"
                     strokeLinejoin="round"
-                    filter="url(#glow)"
+                    className="opacity-100"
+                />
+
+                {/* Geometric Bolt - Solid Monochrome */}
+                <path
+                    d="M17 7L9 17H15L13 25L23 13H16L17 7Z"
+                    fill="#64a0ffff"
                 />
             </svg>
             {showText && (
